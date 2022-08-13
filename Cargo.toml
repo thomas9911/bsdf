@@ -1,0 +1,17 @@
+[package]
+name = "bsdf"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+thiserror = "1.0.32"
+enum-as-inner = "0.5.1"
+md5 = {version = "*", optional = true}
+flate2 = {version = "1.0", optional = true}
+bzip2 = {version = "0.4", optional = true}
+
+[features]
+zlib = ["flate2"]
+bz2 = ["bzip2"]
