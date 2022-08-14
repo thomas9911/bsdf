@@ -1,3 +1,6 @@
+
+// everything is little endian
+
 use crate::consts;
 use crate::{Error, InvalidExtension, Item, Map};
 use std::io::Bytes;
@@ -317,7 +320,6 @@ fn parses_normal_map() {
 
     assert_eq!(item, Some(expected));
 }
-
 
 #[test]
 fn parses_nested_map() {

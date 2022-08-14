@@ -1,26 +1,5 @@
 // https://bsdf.readthedocs.io/spec.html#minimal-implementation
 
-use enum_as_inner::EnumAsInner;
-use std::collections::HashMap;
-
-// everything is little endian
-
-type Map = HashMap<String, Item>;
-
-#[derive(Debug, PartialEq, EnumAsInner)]
-pub enum Item {
-    Bool(bool),
-    Void,
-    Int16(i16),
-    Int64(i64),
-    F32(f32),
-    F64(f64),
-    String(String),
-    Blob(Vec<u8>),
-    List(Vec<Item>),
-    Map(Map),
-}
-
 #[derive(thiserror::Error, Debug, PartialEq)]
 pub enum InvalidExtension {
     #[error("zlib is not included")]
@@ -74,10 +53,12 @@ impl PartialEq for Error {
     }
 }
 
-mod consts;
-mod parser;
+pub mod consts;
+pub mod parser;
+pub mod item;
 
 pub use parser::Parser;
+pub use item::{Item, Map};
 
 #[test]
 fn item_as_test() {
